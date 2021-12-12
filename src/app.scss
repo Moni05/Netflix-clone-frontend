@@ -1,0 +1,12 @@
+:root{
+    --main-color: #141414;
+}
+
+.menu-item{
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        color: lightgray;
+    }
+}
