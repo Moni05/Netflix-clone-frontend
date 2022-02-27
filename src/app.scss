@@ -1,0 +1,22 @@
+:root{
+    --main-color: #141414;
+}
+
+.menu-item{
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        color: lightgray;
+    }
+}
+
+.container{
+    display: flex;
+    margin-top: 10px;
+}
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}
