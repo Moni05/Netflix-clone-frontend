@@ -18,4 +18,16 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .movie-title{
+      display: flex;
+      position: absolute;
+      bottom: 45px;
+      left: 45%;
+      font-size: 28px;
+      text-transform: uppercase;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+    }
 }

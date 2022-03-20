@@ -24,6 +24,7 @@ export default function Screen() {
         controls
         src={movie.video}
       />
+      <div className="movie-title">{movie.title}</div>
     </div>
   );
 }
