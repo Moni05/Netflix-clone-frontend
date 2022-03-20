@@ -2,6 +2,7 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./features.scss";
+import { Link } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_URL
 
@@ -67,10 +68,12 @@ const Features = ({type, setGenre }) => {
                 <span className="description">{show.desc}</span>
 
                 <div className="options">
-                    <button className="play">
-                        <PlayArrow />
-                        <span>Play</span>
-                    </button>
+                   <Link to={{ pathname: "/screen"} } state={{ movie: show }}>
+                       <button className="play">
+                           <PlayArrow />
+                           <span>Play</span>
+                        </button>
+                    </Link>
                     <button className="more-info">
                         <InfoOutlined />
                         <span>More Info</span>
