@@ -9,14 +9,13 @@ const BASE_URL = process.env.REACT_APP_URL
 
 export default function Register() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+
 
   const navigate = useNavigate();
 
   const emailRef = useRef();
-  const passwordRef = useRef();
-  const usernameRef = useRef();
+  const password = useRef();
+  const username = useRef();
 
   const handleStart = () => {
     setEmail(emailRef.current.value);
@@ -24,10 +23,15 @@ export default function Register() {
 
   const handleFinish = async (e) => {
     e.preventDefault();
-    setPassword(passwordRef.current.value);
-    setUsername(usernameRef.current.value);
+
+    const user = {
+      username: username.current.value,
+      email: email,
+      password: password.current.value,
+    };
+
     try {
-      await axios.post(`${BASE_URL}auth/register`, { email,username, password });
+      await axios.post(`${BASE_URL}auth/register`, user);
       navigate("/login");
     } catch (err) {}
   };
@@ -60,8 +64,8 @@ export default function Register() {
           </div>
         ) : (
           <form className="input">
-            <input type="username" placeholder="username" ref={usernameRef} />
-            <input type="password" placeholder="password" ref={passwordRef} />
+            <input type="username" placeholder="username" ref={username} />
+            <input type="password" placeholder="password" ref={password} />
             <button className="registerButton" onClick={handleFinish}>
               Start
             </button>
