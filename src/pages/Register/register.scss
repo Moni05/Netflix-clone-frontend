@@ -47,6 +47,11 @@
       align-items: center;
       justify-content: center;
       color: white;
+      overflow-x: hidden;
+
+      .message {
+        color: red;
+      }
   
       h1 {
         font-size: 50px;
@@ -86,6 +91,10 @@
             font-size: 22px;
             cursor: pointer;
         }
+      }
+      
+      a {
+        color: white;
       }
     }
 }

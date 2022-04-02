@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { registration } from "../../context/registerContext/apiCalls";
+import { RegisterContext } from "../../context/registerContext/RegisterContext";
 
 import "./register.scss";
 
@@ -9,6 +10,8 @@ const BASE_URL = process.env.REACT_APP_URL
 
 export default function Register() {
   const [email, setEmail] = useState("");
+  const { dispatch, status, message } = useContext(RegisterContext);
+  console.log(status);
 
 
   const navigate = useNavigate();
@@ -30,10 +33,13 @@ export default function Register() {
       password: password.current.value,
     };
 
-    try {
-      await axios.post(`${BASE_URL}auth/register`, user);
+    registration({...user}, dispatch);
+
+    if(status === "success"){
       navigate("/login");
-    } catch (err) {}
+      console.log("navigated");
+    }
+
   };
 
 
@@ -55,6 +61,7 @@ export default function Register() {
         <p>
           Ready to watch? Enter your email to create or restart your membership.
         </p>
+        {message && <p className="message">{message}</p>}
         {!email ? (
           <div className="input">
             <input type="email" placeholder="email address" ref={emailRef} />
@@ -71,6 +78,7 @@ export default function Register() {
             </button>
           </form>
         )}
+        <p>Already have an account? <Link to="/login">Sign In</Link></p>
       </div>
     </div>
   );
